@@ -11,8 +11,9 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        git 'https://github.com/MarcosRodrigoGarcia/paylight-core-service.git'
-      }
+              git branch: 'main',
+                  url: 'https://github.com/MarcosRodrigoGarcia/paylight-core-service.git'
+            }
     }
 
     stage('Build') {
