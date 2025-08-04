@@ -9,7 +9,7 @@ pipeline {
   environment {
     IMAGE_NAME = "marcos/paylight-core-service"
     CONTAINER_NAME = "paylight-core"
-    PORT = "8080"
+    PORT = "8085"
   }
 
   stages {
