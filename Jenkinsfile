@@ -14,6 +14,20 @@ pipeline {
 
   stages {
 
+   stage('Instalar Docker') {
+        steps {
+          sh '''
+            if ! command -v docker &> /dev/null; then
+              echo "Instalando Docker..."
+              apt-get update
+              apt-get install -y docker.io
+              systemctl start docker || true
+            else
+              echo "Docker ya está instalado"
+            fi
+          '''
+        }
+
     stage('Checkout') {
       steps {
               git branch: 'main',
