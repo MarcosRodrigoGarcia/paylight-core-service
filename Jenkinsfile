@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+
+   agent {
+           node {
+               label 'docker-agent-alpine'
+               }
+         }
 
   environment {
     IMAGE_NAME = "marcos/paylight-core-service"
