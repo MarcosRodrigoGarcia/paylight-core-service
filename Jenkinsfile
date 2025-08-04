@@ -1,9 +1,10 @@
 pipeline {
 
    agent {
-           node {
-               label 'docker-agent-alpine'
-               }
+           docker {
+               image 'maven:3.9-eclipse-temurin-17'
+               args '-v /var/run/docker.sock:/var/run/docker.sock'
+             }
          }
 
   environment {
@@ -14,19 +15,11 @@ pipeline {
 
   stages {
 
-   stage('Instalar Docker') {
-        steps {
-          sh '''
-            if ! command -v docker &> /dev/null; then
-              echo "Instalando Docker..."
-              apt-get update
-              apt-get install -y docker.io
-              systemctl start docker || true
-            else
-              echo "Docker ya está instalado"
-            fi
-          '''
-        }
+    stage('Check Docker') {
+      steps {
+        sh 'docker --version'
+        sh 'docker ps'
+      }
     }
 
     stage('Checkout') {
