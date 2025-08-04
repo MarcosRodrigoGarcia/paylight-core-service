@@ -14,19 +14,11 @@ pipeline {
 
   stages {
 
-   stage('Instalar Docker') {
-        steps {
-          sh '''
-            if ! command -v docker &> /dev/null; then
-              echo "Instalando Docker..."
-              apt-get update
-              apt-get install -y docker.io
-              systemctl start docker || true
-            else
-              echo "Docker ya está instalado"
-            fi
-          '''
-        }
+    stage('Check Docker') {
+      steps {
+        sh 'docker --version'
+        sh 'docker ps'
+      }
     }
 
     stage('Checkout') {
