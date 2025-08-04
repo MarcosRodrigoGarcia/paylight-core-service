@@ -23,7 +23,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        dir('core-services') {
+        dir('core-service') {
               sh 'mvn clean package -DskipTests'
             }
       }
