@@ -1,11 +1,11 @@
 pipeline {
 
    agent {
-           docker {
-               image 'mmarkibus:0.1'
-               args '-v /var/run/docker.sock:/var/run/docker.sock'
-             }
-         }
+              node {
+                  label 'docker-agent-alpine'
+                  }
+            }
+
 
   environment {
     IMAGE_NAME = "marcos/paylight-core-service"
